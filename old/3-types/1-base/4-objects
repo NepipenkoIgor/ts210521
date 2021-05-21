@@ -1,0 +1,37 @@
+type TUser = {
+    readonly name: string;
+    readonly age?: number;
+    info?: {
+        male: boolean
+    },
+    getName?: () => void,
+}
+
+const user: TUser = {
+    name: 'Ihor',
+    age: 35
+}
+
+user.name = 'Eugene';
+let keys: keyof TUser = 'name';
+
+let nameType: TUser[keyof TUser] = { male: true }; // string | number | {   male: boolea } | ()=>void;
+
+
+let userHashMap: {
+    [id: string]: TUser,
+}
+
+userHashMap = {
+    '0123asdasd124124': user
+}
+
+let arr: readonly (string | number)[] = ['1', '2', 2];
+
+arr[100] = 100;
+arr.push(12)
+
+let tuple: readonly [id: number, user: TUser ] = [1, user];
+
+tuple[100] = 1;
+tuple.push(1);

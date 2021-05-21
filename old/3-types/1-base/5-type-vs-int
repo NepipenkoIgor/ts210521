@@ -1,0 +1,79 @@
+// Object/Functions
+
+// interface IPoint {
+//     x: number;
+//     y: number
+// }
+
+// type TPoint = {
+//     x: number;
+//     y: number
+// }
+
+// interface ISum {
+//     (a: number, b: number): number
+// }
+
+// type TSum = (a: number, b: number) => number// { (a: number, b: number): number}
+
+// let p: TPoint = {
+//     x: 1,
+//     y: 1
+// }
+
+// let sum: TSum = (a: number, b: number) => {
+//     return a + b;
+// }
+
+
+//  Extend 
+
+interface IPointX {
+    x: number;
+   // z: { x: number }
+}
+
+interface IPointY {
+    y: number;
+   // z: { y: number }
+}
+
+
+type TPointX = {
+    x: number;
+}
+
+type TPointY = {
+    y: number;
+}
+
+interface IPoint extends IPointX, IPointY {
+   // z: { x: number, y: number }
+}
+
+type TPoint = TPointX & TPointY;
+
+let p: IPoint = {
+    x: 1,
+    y: 1,
+   // z: { x: 1, y: 1 }
+}
+
+
+// implements
+
+class Point implements TPointX, IPointY {
+    x: number = 1;
+    y: number = 1
+}
+
+type snb = string | number [];
+
+interface IAnimation {
+    delay: number;
+}
+
+let animation: IAnimation = {
+    delay: 1,
+    type: 'sdqa'
+}
