@@ -17,6 +17,7 @@ module.exports = {
     ],
     'rules': {
         quotes: ['error', 'single'],
-        'prefer-const': 'off'
+        'prefer-const': 'off',
+        '@typescript-eslint/no-inferrable-types': 'off'
     }
 };
