@@ -1,0 +1,71 @@
+// let sum = (a: number, b: number) => a + b;
+// sum(1,2);
+// sum(10,2)
+
+// type/interface/fn/class
+
+// interface IUser<info extends { male: boolean } = { male: boolean }, id = number> {
+//     id: id,
+//     name: string,
+//     info: info
+// }
+
+// let user: IUser = {
+//     id: 123123,
+//     name: 'Ihor',
+//     info: {
+//         male: true
+//     }
+// }
+
+// let admin: IUser<{ male: boolean, subjects: string[] }, string> = {
+//     id: '123123',
+//     name: 'Ihor',
+//     info: {
+//         male: true,
+//         subjects: ['ts', 'js']
+//     }
+// }
+
+
+
+
+
+
+
+interface IUser {
+    name: string;
+    age: number;
+}
+
+interface IProduct {
+    name: string;
+    price: number;
+}
+
+interface IState {
+    user: IUser,
+    products: IProduct[]
+}
+
+
+const state: IState = {
+    user: { name: 'Ihor', age: 35 },
+    products: [{ name: 'IPhone XR', price: 300 }]
+}
+type Select<T> = <K extends keyof T>(state: T, field: K) => T[K];
+// IState = (state: IState, fields:'user' | 'products' ) => IState['user' | 'products']
+const select: Select<IState> = (storeState, field) => storeState[field];
+
+
+function generalSelect<T, K extends keyof T>(state: T, field: K): T[K] {
+    return state[field];
+}
+
+
+const userSelect: Select<IUser> = (featureField, field) => featureField[field];
+const user: IUser = generalSelect<>(state, 'user');
+const myName: string = generalSelect(user, 'name');
+const products: IProduct[] = select(state, 'products');
+
+// 'products1' => 'products' | 'user'
