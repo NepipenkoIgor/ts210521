@@ -34,18 +34,18 @@
 // const v2 = average(1, 2, '3');
 // const v3: number = average(1, 2, 1);
 
-type sn = string | number;
+export type sn = string | number;
 
 
-function isString(arg: sn): arg is string {
+export function isString(arg: sn): arg is string {
     return typeof arg === 'string';
 }
 
 
-function average(a: string, b: number): string;
-function average(a: number, b: string): string;
-function average(a: number, b: number, c: number): string;
-function average(...args: sn[]): string {
+export function average(a: string, b: number): string;
+export function average(a: number, b: string): string;
+export function average(a: number, b: number, c: number): string;
+export function average(...args: sn[]): string {
     let total: number = 0;
     for (const arg of args) {
         if (isString(arg)) {
@@ -71,14 +71,14 @@ function average(...args: sn[]): string {
 // const v3: string = average(1, 2, 1);
 
 
-function getFullName(this: { name: string, surname: string }) {
-    return `${this.name} ${this.surname}`;
-}
+// function getFullName(this: { name: string, surname: string }) {
+//     return `${this.name} ${this.surname}`;
+// }
 
-let account = {
-    name: 'Ihor',
-    surname: 'Nepipenko',
-    getFullName
-}
+// let account = {
+//     name: 'Ihor',
+//     surname: 'Nepipenko',
+//     getFullName
+// }
 
-account.getFullName();
+// account.getFullName();
