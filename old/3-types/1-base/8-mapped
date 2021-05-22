@@ -1,0 +1,56 @@
+interface IPerson {
+    readonly name: string;
+    age: number,
+    info: { male: boolean },
+    subjects: string[]
+}
+
+
+type NonReadonly<T> = {
+    -readonly [P in keyof T]?: T[P]
+}
+
+let p1: NonReadonly<IPerson> = {
+    name: 'Ihor'
+}
+
+p1.name = 'Eugene';
+
+
+
+type KeysWithoutType<T, E> = {
+    [P in keyof T]: E extends T[P] ? never : P
+}[keyof T]
+
+let k: KeysWithoutType<IPerson, string> = '';
+
+/*
+  name: string,
+  age: number,
+  info: never,
+  subjects: string[]
+
+*/
+
+type RemoveByFieldName<T, E> = {
+    [P in keyof T as Exclude<P, E>]: T[P]
+}
+
+const p: RemoveByFieldName<NonReadonly<IPerson>, 'info' | 'subjects'> = {
+    name: 'Ihor',
+    age: 35
+}
+p.name = 's'
+
+
+
+type CapitalizedKeysAndGetter<T> = {
+    [P in keyof T as `get${Capitalize<string & P>}`]: () => T[P]
+}
+
+const getUser: CapitalizedKeysAndGetter<IPerson> = {
+    getName: () => 'Ihor',
+    getAge: () => 35,
+    getInfo: () => ({ male: true }),
+    getSubjects: () => (['ts', 'angular'])
+}
